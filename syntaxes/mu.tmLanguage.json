@@ -1,0 +1,107 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Markup Example",
+
+  "patterns": [
+    { "include": "#comment" },
+    { "include": "#header" },
+    { "include": "#quote" },
+    { "include": "#link" },
+    { "include": "#escape" },
+    { "include": "#italic" },
+    { "include": "#bold" },
+    { "include": "#underline" },
+    { "include": "#code" },
+    { "include": "#ul" },
+    { "include": "#ol" },
+    { "include": "#hr" }
+  ],
+
+  "repository": {
+    "comment": {
+      "begin": "^~~~\\s",
+      "end": "$",
+      "name": "comment"
+    },
+
+    "header": {
+      "begin": "^#+\\s",
+      "end": "$",
+      "name": "entity.name.section",
+      "beginCaptures": { "0": { "name": "markup.heading" } }
+    },
+
+    "quote": {
+      "begin": "^>\\s",
+      "end": "$",
+      "name": "markup.quote",
+      "beginCaptures": { "0": { "name": "punctuation.definition.quote" } }
+    },
+
+    "link": {
+      "begin": "\\[",
+      "end": "\\]",
+      "captures": { "0": { "name": "keyword.operator" } },
+      "patterns": [
+        {
+          "match": "\\|(?=\\s*[^\\s\\|]+\\s*\\])",
+          "name": "keyword.operator"
+        },
+        {
+          "match": "(?<=\\|\\s*)[^\\s\\|]+(?=\\s*\\])",
+          "name": "markup.underline.link"
+        }
+      ]
+    },
+
+    "escape": {
+      "match": "\\\\.",
+      "name": "constant.character.escape"
+    },
+
+    "italic": {
+      "begin": "(?<!\\\\)\\*",
+      "end": "(?<!\\\\)\\*",
+      "name": "markup.italic",
+      "captures": { "0": { "name": "punctuation.definition" } }
+    },
+
+    "bold": {
+      "begin": "(?<!\\\\)\\^",
+      "end": "(?<!\\\\)\\^",
+      "name": "markup.bold",
+      "captures": { "0": { "name": "punctuation.definition" } }
+    },
+
+    "underline": {
+      "begin": "(?<!\\\\)\\_",
+      "end": "(?<!\\\\)\\_",
+      "name": "markup.underline",
+      "captures": { "0": { "name": "punctuation.definition" } }
+    },
+
+    "code": {
+      "begin": "(?<!\\\\)`",
+      "end": "(?<!\\\\)`",
+      "name": "markup.inline.raw.string.markdown",
+      "captures": { "0": { "name": "punctuation.definition" } }
+    },
+
+    "ul": {
+      "match": "^-\\s",
+      "name": "punctuation.definition.list.begin"
+    },
+
+    "ol": {
+      "match": "^\\d+\\.\\s",
+      "name": "punctuation.definition.list.begin"
+    },
+
+    "hr": {
+      "match": "^---$",
+      "name": "markup.heading"
+    }
+  },
+
+  "scopeName": "source.mu"
+}

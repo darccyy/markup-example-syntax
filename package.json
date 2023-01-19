@@ -1,0 +1,33 @@
+{
+  "name": "markup-example-syntax",
+  "displayName": "Markup Example Syntax",
+  "description": "Syntax Highlighting for Markup Example",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.73.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "mu",
+        "aliases": [
+          "Markup Example"
+        ],
+        "extensions": [
+          "mu"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "mu",
+        "scopeName": "source.mu",
+        "path": "./syntaxes/mu.tmLanguage.json"
+      }
+    ]
+  }
+}
